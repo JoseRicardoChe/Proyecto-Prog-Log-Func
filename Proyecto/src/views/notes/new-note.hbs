@@ -1,0 +1,34 @@
+{{#each errors}}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+ {{text}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/each}}
+ 
+
+
+<div class="col-md-4 mx-auto">
+<div class="card">
+    <div class="card-header">
+        <h3>Nota de Reporte </h3>
+    </div>
+    <div class="card-body">
+     <!--El metodo es para enviar al formulario conetado en notes.js -->  
+    <form action="/notes/new-note" method="POST">
+    <div class="form-group">
+        <input type="text" name="title" class="form-control" placeholder="Titulo"
+        autofocus>
+    </div>
+    <div>
+        <textarea name= "description" class="form.control"placeholder="Descripcion"></textarea>
+    </div>
+    <div class="form group"></div>
+    <button class="btn btn-primary btn-block" type="submit">
+        Guardar
+    </button>
+    </form>
+    </div>
+</div>
+</div>
