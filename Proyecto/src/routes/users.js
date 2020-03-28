@@ -1,12 +1,23 @@
-const express = require('express');
-const router =express.Router();
-//rutas  ingresar
-router.get('/users/signin', (req,res)=>{
-res.render('users/signin');
-});
+//programacion funcional
+const router = require("express").Router();
 
-//RUTA PARA AUDENTIFICARSE
-router.get('/users/signup', (req,res)=>{
-res.render('users/signup');
-});
-module.exports =router;
+const {
+  renderSignUpForm,
+  singup,
+  renderSigninForm,
+  signin,
+  logout
+} = require("../controllers/users.controller");
+
+// rutas para el usario pueda logearse y para registrarse
+router.get("/users/signup", renderSignUpForm);
+
+router.post("/users/signup", singup);
+
+router.get("/users/signin", renderSigninForm);
+
+router.post("/users/signin", signin);
+
+router.get("/users/logout", logout);
+
+module.exports = router;

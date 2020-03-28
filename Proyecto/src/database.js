@@ -1,4 +1,4 @@
-//Conection database
+//Conexion de la Base de datos
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/probd',{

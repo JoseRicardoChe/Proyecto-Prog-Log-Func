@@ -1,0 +1,108 @@
+<!--Crear el Piechard para generar las graficas -->
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                <script>
+                    //GRAFICAS POR CARRERA
+                    let is = parseFloat({{ isc }});
+                    let ci = parseFloat({{ civ }});
+                    let indu = parseFloat({{ ind }});
+                    let am = parseFloat({{ amb }});
+                    let ad = parseFloat({{ adm }});
+                    //GRAFICA POR GENERO
+                    let M = parseFloat({{ mas }});
+                    let F = parseFloat({{ fem }});
+
+                    google.charts.load('current', { 'packages': ['corechart'] });
+
+                    const drawCharts = () => {
+                        var carrera = new google.visualization.PieChart(document.getElementById('piechartcarrera'));
+                        var genero = new google.visualization.BarChart(document.getElementById('piechartsexo'));
+                        carrera.draw(
+                            google.visualization.arrayToDataTable([
+                                ['Carrera', 'OK'],
+                                ['Sistemas', is],
+                                ['Civil', ci],
+                                ['Industrial', indu],
+                                ['Ambiental', am],
+                                ['Administracion', ad],
+                            ]), { 'title': 'Usuarios por carrera', 'width': 470, 'height': 450 }
+                        );
+                        genero.draw(
+                            google.visualization.arrayToDataTable([
+                                ['Sexo', 'OK'],
+                                ['Masculino', M],
+                                ['Femenino', F],
+                            ]), { 'title': 'Usuarios por genero', 'width': 470, 'height': 450 }
+                        );
+                    }
+                    google.charts.setOnLoadCallback(drawCharts);
+                </script>
+
+<!--Crear la vista de la pagina web para generar la informacion -->
+<div class="row">
+    <div class="col-md-12">
+        <ul class="list-group list-group-flush">
+            <div class="card-header text-center">
+                <h1><b>Información total de registro Por Carrera</b></h1>
+            </div>
+            <div id="Target">
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#Cchart">
+                            <b>Grafica</b>
+                        </a>
+                    </div>
+                    <div id="Cchart" class="collapse show" data-parent="#Target">
+                        <div class="card-body p-0">
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm 12 mx-auto">
+                                        <div id="piechartcarrera"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm 12 mx-auto">
+                                        <div id="piechartsexo"></div>
+                                    </div>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#autocolapse">
+                            <b>Numero de Usuarios Por carrera: </b<
+                        </a>
+                    </div>
+                    <div id="autocolapse" class="collapse" data-parent="#Target">
+                        <div class="card-body pl-0 pr-0 pt-0">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="card">
+                                        <div class="card-header text-center">
+                                            <b>Carrera</b>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Ing. En Sistemas: {{isc}}</li>
+                                            <li class="list-group-item">Ing. Civil: {{civ}}</li>
+                                            <li class="list-group-item">Ing. Industrial: {{ind}}</li>
+                                            <li class="list-group-item">Ing. Administración: {{adm}}</li>
+                                            <li class="list-group-item">Ing. Ambiental: {{amb}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header text-center">
+                                            Sexo
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Masculino: {{mas}}</li>
+                                            <li class="list-group-item">Femenino: {{fem}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>

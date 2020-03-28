@@ -1,41 +1,34 @@
-const express = require('express');
-const router =express.Router();
+//programacion Funcional
+const express = require("express");
+const router = express.Router();
 
-const Note = require('../models/Note');
-//rutas para que el usuario pueda ver un formulario
-router.get('/notes/add', (req, res)=>{
-res.render('notes/new-note');
-});
-//se recibe los datos en el servidor
-//metodos para recorrer la base de datos conectada
-router.post('/notes/new-note', async (req,res)=>{
-    const{title,description}=req.body;
-    const errors =[];
-    //funcion if verifica si esta disponible o no el titulo
-    if(!title){
-        errors.push({text: ' El titulo es obligatorio'});
-    }
-    if(!description){
-        errors.push({text: 'El Descripcion es obligatorio'});
-    }
-    //para retornar errores
-    if(errors.length > 0){
-       res.render('notes/new-note',{
-           errors,
-           title,
-           description
-       });
-    }else {
-        const newNote = new Note({title, description});
-        //para guardar la base de datos
-        await newNote.save();
-        res.redirect('/notes');
-    }
-});
+// Controller controla los las nuevas notas y las actualizaciones 
+const {
+  renderNoteForm,
+  createNewNote,
+  renderNotes,
+  renderEditForm,
+  updateNote,
+  deleteNote
+} = require("../controllers/notes.controller");
 
-//se consulta la base de datos
-router.get('/notes', async (req, res) => {
-  const notes = await Note.find().sort({date:'desc'});
-  res.render('notes/all-notes', { notes });
-});
+// Helpers
+const { isAuthenticated } = require("../helpers/auth");
+
+// Nuevas Evidencias
+router.get("/notes/add", isAuthenticated, renderNoteForm);
+
+router.post("/notes/new-note", isAuthenticated, createNewNote);
+
+// Obtener Nuevas Evidencias
+router.get("/notes", isAuthenticated, renderNotes);
+
+// Editar las Evidencias
+router.get("/notes/edit/:id", isAuthenticated, renderEditForm);
+
+router.put("/notes/edit-note/:id", isAuthenticated, updateNote);
+
+// Eliminar Evidencias
+router.delete("/notes/delete/:id", isAuthenticated, deleteNote);
+
 module.exports = router;
