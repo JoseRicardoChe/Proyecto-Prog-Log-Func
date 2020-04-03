@@ -7,8 +7,10 @@ indexCtrl.renderIndex = (req, res) => {
 indexCtrl.renderAbout = (req, res) => {
   res.render('about');
 };
-
+//controlador para las graficas
 indexCtrl.renderAbout = (req, res) => {
   res.render('/estadistica/graficas');
 };
+
+
 module.exports = indexCtrl;

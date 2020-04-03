@@ -18,6 +18,7 @@ const { isAuthenticated } = require("../helpers/auth");
 // Nuevas Evidencias
 router.get("/notes/add", isAuthenticated, renderNoteForm);
 
+//Nueva evidencia
 router.post("/notes/new-note", isAuthenticated, createNewNote);
 
 // Obtener Nuevas Evidencias
@@ -30,5 +31,6 @@ router.put("/notes/edit-note/:id", isAuthenticated, updateNote);
 
 // Eliminar Evidencias
 router.delete("/notes/delete/:id", isAuthenticated, deleteNote);
+
 
 module.exports = router;

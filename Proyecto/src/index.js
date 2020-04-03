@@ -5,11 +5,12 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
+
 //inicializacion
 require('./database');
 const app = express();
-
 require('./config/passport');
+
 
 //seccion de configuracion
 app.set('port', process.env.PORT || 3000);
@@ -21,6 +22,7 @@ app.engine('.hbs',exphbs({
     extname: '.hbs'
 }));
 app.set('view engine', '.hbs');
+
 
 // funciones ejecutadas al servidor
 app.use(express.urlencoded({extended: false}));
@@ -43,6 +45,7 @@ app.use((req, res, next) => {
   res.locals.user = req.user || null;
   next();
 });
+
 //Rutas para el servidor
 app.use(require('./routes/index'));
 app.use(require('./routes/notes'));

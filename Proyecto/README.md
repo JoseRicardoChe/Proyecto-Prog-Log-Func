@@ -4,20 +4,29 @@
 
 # Screenshot Del Proyecto
 - sign in
-![](docs/sign in.jpeg)
+![](docs/signin.PNG)
 - sign up
-![](docs/sign up.jpeg)
+![](docs/signup.PNG)
+- Inicio del usuario para crear Evidencias
+![](docs/iniciodeluser.PNG)
 - vista de las evidencias
-![](docs/evidencias.jpeg)
+![](docs/evidencias.PNG)
 - Para agregar una evidencia
-![](docs/nueva evidencia.jpeg)
-- seccion para ver el numero de estudiantes en la plataforma
-![](docs/grafica 2.jpeg)
+![](docs/nuevaevidencia.PNG)
+- seccion para ver el numero de estudiantes por carrera
+![](docs/UserCarrera.PNG)
 - grafica por Genero
-![](docs/grafica.jpeg)
-- numero de estudiantes por carrera 
-![](docs/ingresos x carrera.jpeg)
+![](docs/UserGenero.PNG)
+- numero de usuarios y total de evidencias
+![](docs/UsuariosEvidencias.PNG)
+- Usuarios por Semestre
+![](docs/UserSemestre.PNG)
+- Total de Usuarios por carrera
+![](docs/CarreraXuser.PNG)
+- Informacion del Usuario
+![](docs/PerfilUser.PNG)
 
+PerfilUser.PNG
 # Integrantes de equipo
 * Eduardo Emanuel Un Suaste
 * Ricardo Che Cauich

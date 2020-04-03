@@ -1,42 +1,3 @@
-<!--Crear el Piechard para generar las graficas -->
-                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                <script>
-                    //GRAFICAS POR CARRERA
-                    let is = parseFloat({{ isc }});
-                    let ci = parseFloat({{ civ }});
-                    let indu = parseFloat({{ ind }});
-                    let am = parseFloat({{ amb }});
-                    let ad = parseFloat({{ adm }});
-                    //GRAFICA POR GENERO
-                    let M = parseFloat({{ mas }});
-                    let F = parseFloat({{ fem }});
-
-                    google.charts.load('current', { 'packages': ['corechart'] });
-
-                    const drawCharts = () => {
-                        var carrera = new google.visualization.PieChart(document.getElementById('piechartcarrera'));
-                        var genero = new google.visualization.BarChart(document.getElementById('piechartsexo'));
-                        carrera.draw(
-                            google.visualization.arrayToDataTable([
-                                ['Carrera', 'OK'],
-                                ['Sistemas', is],
-                                ['Civil', ci],
-                                ['Industrial', indu],
-                                ['Ambiental', am],
-                                ['Administracion', ad],
-                            ]), { 'title': 'Usuarios por carrera', 'width': 470, 'height': 450 }
-                        );
-                        genero.draw(
-                            google.visualization.arrayToDataTable([
-                                ['Sexo', 'OK'],
-                                ['Masculino', M],
-                                ['Femenino', F],
-                            ]), { 'title': 'Usuarios por genero', 'width': 470, 'height': 450 }
-                        );
-                    }
-                    google.charts.setOnLoadCallback(drawCharts);
-                </script>
-
 <!--Crear la vista de la pagina web para generar la informacion -->
 <div class="row">
     <div class="col-md-12">
@@ -47,11 +8,11 @@
             <div id="Target">
                 <div class="card">
                     <div class="card-header">
-                        <a class="collapsed card-link" data-toggle="collapse" href="#Cchart">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#GraficasPro">
                             <b>Grafica</b>
                         </a>
                     </div>
-                    <div id="Cchart" class="collapse show" data-parent="#Target">
+                    <div id="GraficasPro" class="collapse show" data-parent="#Target">
                         <div class="card-body p-0">
                             <center>
                                 <div class="row">
@@ -64,23 +25,36 @@
                                         <div id="piechartsexo"></div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm 12 mx-auto">
+                                        <div id="piechartevidencia"></div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm 12 mx-auto">
+                                        <div id="piechartsemestre"></div>
+                                    </div>
+                                </div>
                             </center>
                         </div>
                     </div>
                 </div>
+
+
                 <div class="card">
                     <div class="card-header">
-                        <a class="card-link" data-toggle="collapse" href="#autocolapse">
-                            <b>Numero de Usuarios Por carrera: </b<
+                        <a class="card-link" data-toggle="collapse" href="#TablaPro">
+                            <b>Numero de Usuarios Por carrera: </b>
                         </a>
                     </div>
-                    <div id="autocolapse" class="collapse" data-parent="#Target">
+                    <div id="TablaPro" class="collapse" data-parent="#Target">
                         <div class="card-body pl-0 pr-0 pt-0">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="card">
                                         <div class="card-header text-center">
-                                            <b>Carrera</b>
+                                            <b>Carrera: </b> total de usuarios {{TotalUsers}} 
                                         </div>
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">Ing. En Sistemas: {{isc}}</li>
@@ -94,7 +68,7 @@
                                 <div class="col-md-6 col-sm-12">
                                     <div class="card">
                                         <div class="card-header text-center">
-                                            Sexo
+                                            <b>Genero: </b>
                                         </div>
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">Masculino: {{mas}}</li>
@@ -106,3 +80,83 @@
                         </div>
                     </div>
                 </div>
+
+
+                <!--Crear el Piechard para generar las graficas -->
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                <script>
+                    //GRAFICAS POR CARRERA
+                    let is = parseFloat({{ isc }});
+                    let ci = parseFloat({{ civ }});
+                    let indu = parseFloat({{ ind }});
+                    let am = parseFloat({{ amb }});
+                    let ad = parseFloat({{ adm }});
+
+                    //Grafica por semestre
+                    let p = parseFloat({{ pri }});
+                    let seg = parseFloat({{ seg }});
+                    let t = parseFloat({{ ter }});
+                    let c = parseFloat({{ cua }});
+                    let q = parseFloat({{ qui }});
+                    let s = parseFloat({{ sex }});
+                    let se = parseFloat({{ sep }});
+                    let o = parseFloat({{ oct }});
+                    let n = parseFloat({{ nov }});
+
+                    //GRAFICA POR GENERO
+                    let M = parseFloat({{ mas }});
+                    let F = parseFloat({{ fem }});
+
+
+
+                    google.charts.load('current', { 'packages': ['corechart'] });
+
+                    const drawCharts = () => {
+                        var carrera = new google.visualization.PieChart(document.getElementById('piechartcarrera'));
+                        var genero = new google.visualization.BarChart(document.getElementById('piechartsexo'));
+                        var NumerUE = new google.visualization.PieChart(document.getElementById('piechartevidencia'));
+                        var semester = new google.visualization.PieChart(document.getElementById('piechartsemestre'));
+
+                        carrera.draw(
+                            google.visualization.arrayToDataTable([
+                                ['Carrera', 'OK'],
+                                ['Sistemas', is],
+                                ['Civil', ci],
+                                ['Industrial', indu],
+                                ['Ambiental', am],
+                                ['Administracion', ad],
+                            ]), { 'title': 'Usuarios por carrera', 'width': 570, 'height': 550 }
+                        );
+                        semester.draw(
+                            google.visualization.arrayToDataTable([
+                                ['Semestre', 'OK'],
+                                ['Primero', p],
+                                ['Segundo', seg],
+                                ['Tercero', t],
+                                ['Cuarto', c],
+                                ['Quinto', q],
+                                ['Sexto', s],
+                                ['Septimo', se],
+                                ['Octavo', o],
+                                ['Noveno', n],
+                            ]), { 'title': 'Usuarios por Semestre', 'width': 570, 'height': 550 }
+                        );
+                        genero.draw(
+                            google.visualization.arrayToDataTable([
+                                ['Sexo', 'User'],
+                                ['Masculino', M],
+                                ['Femenino', F]
+                            ]), { 'title': 'Usuarios por genero', 'width': 570, 'height': 550 }
+                        );
+
+                        NumerUE.draw(
+                            google.visualization.arrayToDataTable([
+                                ['USERS', 'OK'],
+                                ['TOTAL DE USUARIOS', {{ TotalUsers }}],
+                                ['TOTAL DE EVIDENCIAS', {{ TotalEvidencias }}]
+                            ]), { 'title': 'Numero de usuarios y de evidencias realizadas', 'width': 570, 'height': 550 }
+                        );
+
+                    }
+                    google.charts.setOnLoadCallback(drawCharts);
+                </script>
